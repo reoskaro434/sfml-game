@@ -1,0 +1,30 @@
+#include "Spearman.h"
+
+MP::Spearman::Spearman()
+{
+}
+
+MP::Spearman::Spearman(sf::Texture* texturePtr, sf::Font& aFont)
+{
+	aAnimation.loadObjectTextures(texturePtr, 1, 1, 236);
+	_item_amount_text.setFont(aFont);
+	setItemAmount(0);
+	_item_amount_text.setLetterSpacing(1);
+	_item_amount_text.setCharacterSize(25);
+	_item_amount_text.setFillColor(sf::Color(224, 224, 224));
+	_item_cost = 25;
+}
+
+void MP::Spearman::setItemPosition(sf::Vector2f itemPosition)
+{
+	setObjectCoord(itemPosition);
+	itemPosition.x += 80;
+	itemPosition.y += 221;
+	_item_amount_text.setPosition(itemPosition);
+}
+
+void MP::Spearman::drawItem(sf::RenderWindow& mainWindow)
+{
+	mainWindow.draw(aAnimation.getObjectSprite());
+	mainWindow.draw(_item_amount_text);
+}
